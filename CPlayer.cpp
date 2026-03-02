@@ -1,12 +1,13 @@
 #include "CPlayer.h"
-CPlayer::CPlayer()
+
+CPlayer::CPlayer(): CPerson()
 {
     this->letter = ' ';
     this->posX = 0;
     this->posY = 0;
 }
 
-CPlayer::CPlayer(char l, int pX, int pY)
+CPlayer::CPlayer(char l, int pX, int pY): CPerson()
 {
     this->letter = l;
     this->posX = pX;
