@@ -6,8 +6,8 @@ class CSoccerField
 {
 private:
     string name;
-    int rows = N_ROWS;
-    int cols = N_COLS;
+    int rows;
+    int cols;
     char matrix[N_ROWS][N_COLS];
 public:
     CSoccerField();

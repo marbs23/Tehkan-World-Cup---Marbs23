@@ -1,5 +1,5 @@
 #include <CSoccerField.h>
-CSoccerField::CSoccerField()
+CSoccerField::CSoccerField(): rows(N_ROWS), cols(N_COLS)
 {
     // GOAL SUPERIOR LINES
     for (int j = 0; j < 5; j++)
