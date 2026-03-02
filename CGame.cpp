@@ -50,12 +50,12 @@ void CGame::print()
     // 1. Put Teams in matrix
     for (auto &&player : redTeam->get_players())
     {
-        matrix[player->get_posX()][player->get_posY()] = player->get_letter(); 
+        matrix[player->get_posY()][player->get_posX()] = player->get_letter(); 
     }
 
     for (auto &&player : blueTeam->get_players())
     {
-        matrix[player->get_posX()][player->get_posY()] = player->get_letter(); 
+        matrix[player->get_posY()][player->get_posX()] = player->get_letter(); 
     }
 
     // 2. Put Ball in matrix
