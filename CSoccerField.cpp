@@ -1,11 +1,6 @@
 #include "CSoccerField.h"
 
-CSoccerField::CSoccerField()
-{
-    
-}
-
-CSoccerField::CSoccerField(string _name):rows(N_ROWS), cols(N_COLS), name(_name)
+CSoccerField::CSoccerField(): name(""), rows(N_ROWS), cols(N_COLS)
 {
     matrix = new char*[rows];
     for (int i = 0; i < rows; i++)
@@ -60,13 +55,16 @@ CSoccerField::CSoccerField(string _name):rows(N_ROWS), cols(N_COLS), name(_name)
     }
     
     // TODO: AREA BOMB LINES
-
 }
 
-char** CSoccerField::get_matrix() const
-{
-    return matrix;
-}
+string CSoccerField::get_name() const {return name;}
+int CSoccerField::get_rows() const {return rows;}
+int CSoccerField::get_cols() const {return cols;}
+char** CSoccerField::get_matrix() const {return matrix;}
+void CSoccerField::set_name(string _name) {name = _name;}
+void CSoccerField::set_rows(int _rows) {rows = _rows;}
+void CSoccerField::set_cols(int _cols) {cols = _cols;}
+void CSoccerField::set_matrix(char** _matrix) {matrix = _matrix;}
 
 CSoccerField::~CSoccerField()
 {

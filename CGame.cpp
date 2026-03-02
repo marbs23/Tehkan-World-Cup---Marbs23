@@ -2,9 +2,9 @@
 CGame::CGame()
 {
     // TODO: init button personalize game
-    this->soccerField = CSoccerField("sts");
-    this->redTeam = new CTeam("red",CPerson("coach1",25,"Peru"));
-    this->blueTeam = new CTeam("blue",CPerson("coach2",27,"Alemania"));
+    this->soccerField = CSoccerField();
+    this->redTeam = new CTeam("red");
+    this->blueTeam = new CTeam("blue");
     this->posXBall = 25;
     this->posYBall = 60;
     this->current_team = "BLUE";
@@ -69,4 +69,6 @@ bool CGame::verify_goal()
 
 CGame::~CGame()
 {
+    delete redTeam;
+    delete blueTeam;
 }
