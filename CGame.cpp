@@ -1,11 +1,13 @@
 #include "CGame.h"
 CGame::CGame()
 {
-}
-
-CGame::CGame(CSoccerField _sF, CTeam* rT, CTeam* bT, int pXBall, int pYBall)
-{
-
+    // TODO: init button personalize game
+    this->soccerField = CSoccerField("sts");
+    this->redTeam = new CTeam("red",CPerson("coach1",25,"Peru"));
+    this->blueTeam = new CTeam("blue",CPerson("coach2",27,"Alemania"));
+    this->posXBall = 25;
+    this->posYBall = 60;
+    this->current_team = "BLUE";
 }
 
 void CGame::actions()
@@ -44,13 +46,23 @@ void CGame::take_commands()
 void CGame::print()
 {
     // 1. Print field
+    char** matrix = soccerField.get_matrix();
+    for (int i = 0; i < N_ROWS; i++)
+    {
+        for (int j = 0; j < N_COLS; j++)
+        {
+            cout << matrix[i][j];
+        }
+        cout << endl;
+    }
+    
     // 2. Print Teams
     // 3. Print Ball
 }
 
 bool CGame::verify_goal()
 {
-
+    return 0;
 }
 
 

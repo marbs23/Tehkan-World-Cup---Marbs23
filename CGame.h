@@ -12,7 +12,6 @@ private:
     string current_team;
 public:
     CGame();
-    CGame(CSoccerField _sF, CTeam* rT, CTeam* bT, int pXBall, int pYBall);
     void actions();
     void play();
     void print();

@@ -7,6 +7,7 @@ private:
     int age;
     string country;
 public:
-    CPerson(/* args */);
+    CPerson();
+    CPerson(string _name, int _age, string _country);
     ~CPerson();
 };

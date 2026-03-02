@@ -1,4 +1,4 @@
-#include <CPerson.h>
+#include "CPerson.h"
 class CPlayer:public CPerson
 {
 private:

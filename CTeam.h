@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <CPlayer.h>
+#include "CPlayer.h"
 using namespace std;
 class CTeam
 {

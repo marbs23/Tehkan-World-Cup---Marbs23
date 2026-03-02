@@ -1,10 +1,20 @@
-#include <CSoccerField.h>
-CSoccerField::CSoccerField(): rows(N_ROWS), cols(N_COLS)
+#include "CSoccerField.h"
+
+CSoccerField::CSoccerField()
+{
+    
+}
+
+CSoccerField::CSoccerField(string _name):rows(N_ROWS), cols(N_COLS), name(_name)
 {
     matrix = new char*[rows];
     for (int i = 0; i < rows; i++)
     {
         matrix[i] = new char[cols];
+        for (int j = 0; j < cols; j++)
+        {
+            matrix[i][j] = ' ';
+        }
     }
     
     // GOAL SUPERIOR LINES

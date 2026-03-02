@@ -11,6 +11,7 @@ private:
     char** matrix;
 public:
     CSoccerField();
+    CSoccerField(string _name);
     char** get_matrix() const;
     ~CSoccerField();
 };
