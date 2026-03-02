@@ -53,6 +53,8 @@ bool CGame::verify_goal()
 
 }
 
+
+
 CGame::~CGame()
 {
 }

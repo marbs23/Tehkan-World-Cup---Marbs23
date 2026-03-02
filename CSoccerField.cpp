@@ -1,6 +1,12 @@
 #include <CSoccerField.h>
 CSoccerField::CSoccerField(): rows(N_ROWS), cols(N_COLS)
 {
+    matrix = new char*[rows];
+    for (int i = 0; i < rows; i++)
+    {
+        matrix[i] = new char[cols];
+    }
+    
     // GOAL SUPERIOR LINES
     for (int j = 0; j < 5; j++)
     {
@@ -47,6 +53,17 @@ CSoccerField::CSoccerField(): rows(N_ROWS), cols(N_COLS)
 
 }
 
+char** CSoccerField::get_matrix() const
+{
+    return matrix;
+}
+
 CSoccerField::~CSoccerField()
 {
+    for (int i = 0; i < rows; i++)
+    {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
+    matrix == nullptr;
 }

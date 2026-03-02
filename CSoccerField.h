@@ -8,8 +8,9 @@ private:
     string name;
     int rows;
     int cols;
-    char matrix[N_ROWS][N_COLS];
+    char** matrix;
 public:
     CSoccerField();
+    char** get_matrix() const;
     ~CSoccerField();
 };
