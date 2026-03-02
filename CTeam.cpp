@@ -1,9 +1,13 @@
 #include "CTeam.h"
-CTeam::CTeam(/* args */)
+
+CTeam::CTeam()
 {
+    this->name = "";
+    this->players = {};
+    this->coach = CPerson();
 }
 
-CTeam::CTeam(string n, CPerson c):name(n), coach(c)
+CTeam::CTeam(string n):name(n), coach(CPerson())
 {
     vector<pair<int,int>> positions = {{25,0},{4,14},{12,14},{38,14},{46,14},
                                     {9,29},{25,29},{41,29},{4,53},{25,53},{46,53}};
@@ -33,6 +37,11 @@ CTeam::CTeam(string n, CPerson c):name(n), coach(c)
 }
 
 string CTeam::get_name() const {return name;}
+vector<CPlayer*> CTeam::get_players() const {return players;}
+CPerson CTeam::get_coach() const {return coach;}
+void CTeam::set_name(string _name) {name = _name;}
+void CTeam::set_players(vector<CPlayer*> _players) {players = _players;}
+void CTeam::set_coach(CPerson _coach) {coach = _coach;}
 
 CTeam::~CTeam()
 {
