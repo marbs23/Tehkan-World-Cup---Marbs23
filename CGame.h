@@ -3,7 +3,7 @@
 class CGame
 {
 private:
-    CSoccerField soccerField;
+    CSoccerField* soccerField;
     CTeam* redTeam;
     CTeam* blueTeam;
     int posXBall;

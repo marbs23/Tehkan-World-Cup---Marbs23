@@ -2,7 +2,7 @@
 CGame::CGame()
 {
     // TODO: init button personalize game
-    this->soccerField = CSoccerField();
+    this->soccerField = new CSoccerField();
     this->redTeam = new CTeam("red");
     this->blueTeam = new CTeam("blue");
     this->posXBall = 25;
@@ -46,19 +46,37 @@ void CGame::take_commands()
 
 void CGame::print()
 {
-    // 1. Print field
-    char** matrix = soccerField.get_matrix();
+    char** matrix = soccerField->get_matrix();
+    // 1. Put Teams in matrix
+    for (auto &&player : redTeam->get_players())
+    {
+        matrix[player->get_posX()][player->get_posY()] = player->get_letter(); 
+    }
+
+    for (auto &&player : blueTeam->get_players())
+    {
+        matrix[player->get_posX()][player->get_posY()] = player->get_letter(); 
+    }
+
+    // 2. Put Ball in matrix
+    matrix[posXBall][posYBall] = 'X';
+
+    // 3. Print field
+    for (int i = 0; i < 123; i++) cout << "-";
+    cout << endl;
+    
     for (int i = 0; i < N_ROWS; i++)
     {
+        cout << "|";
         for (int j = 0; j < N_COLS; j++)
         {
             cout << matrix[i][j];
         }
-        cout << endl;
+        cout << "|" << endl;
     }
     
-    // 2. Print Teams
-    // 3. Print Ball
+    for (int i = 0; i < 123; i++) cout << "-";
+    cout << endl;
 }
 
 bool CGame::verify_goal()
@@ -70,6 +88,7 @@ bool CGame::verify_goal()
 
 CGame::~CGame()
 {
+    delete soccerField;
     delete redTeam;
     delete blueTeam;
 }
