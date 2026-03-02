@@ -73,5 +73,5 @@ CSoccerField::~CSoccerField()
         delete[] matrix[i];
     }
     delete[] matrix;
-    matrix == nullptr;
+    matrix = nullptr;
 }

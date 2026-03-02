@@ -8,6 +8,7 @@ CGame::CGame()
     this->posXBall = 25;
     this->posYBall = 60;
     this->current_team = "BLUE";
+    this->commands = vector<string>(5);
 }
 
 void CGame::actions()
