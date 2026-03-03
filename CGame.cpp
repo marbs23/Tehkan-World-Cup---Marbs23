@@ -147,6 +147,11 @@ void CGame::print()
 
 void CGame::check_boundaries()
 {
+    if (posXBall<0) posXBall = 0;
+    else if (posXBall>120) posXBall = 120;
+    if (posYBall<0) posYBall  = 0;
+    else if (posYBall>50) posYBall = 50;
+
     for (auto &&player : redTeam->get_players())
     {
         if (player->get_posX()<0) player->set_posX(0);
