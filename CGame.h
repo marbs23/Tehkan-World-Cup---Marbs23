@@ -17,5 +17,6 @@ public:
     void print();
     bool verify_goal();
     void take_commands();
+    pair<int,int> direction();
     ~CGame();
 };

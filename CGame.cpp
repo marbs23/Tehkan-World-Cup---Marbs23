@@ -13,7 +13,64 @@ CGame::CGame()
 
 void CGame::actions()
 {
+    char** matrix = soccerField->get_matrix();
+    bool flag_use_ball = false;
 
+    CTeam* team = (current_team == "BLUE") ? blueTeam : redTeam;
+    CPlayer* player_to_check;
+    for (auto &&i : team->get_players())
+    {
+        if (i->get_letter() == commands[0][0]) player_to_check = i;
+    }
+    int posPlayerX = player_to_check->get_posX();
+    int posPlayerY = player_to_check->get_posY();
+    int number_spaces = stoi(commands[3]);
+    pair<int,int> dir = direction();
+
+    if (((posPlayerY+2 <= posYBall)||(posPlayerY-2 <= posYBall))&(posPlayerX+2 <= posXBall)||(posPlayerX-2 <= posXBall)) flag_use_ball = true;
+
+    if (commands[2] == "BALL")
+    {
+        if (number_spaces < 1 || number_spaces > 40)
+        {
+            if (flag_use_ball)
+            {
+                if (dir.first != 0) posYBall += dir.first*number_spaces;
+                if (dir.second != 0) posXBall += dir.second*number_spaces;
+            } else cout << "Operation invalid";
+        }
+        
+    } else if (commands[2] == "PLAYER")
+    {
+        if (number_spaces < 1 || number_spaces > 10)
+        {
+            int finalPosPlayerY = posPlayerY+dir.first*number_spaces;
+            int finalPosPlayerX = posPlayerY+dir.second*number_spaces;
+            if (dir.first != 0) player_to_check->set_posY(finalPosPlayerY);
+            if (dir.second != 0) player_to_check->set_posX(finalPosPlayerX);
+            posXBall = finalPosPlayerX+1;
+        }
+        
+    } else
+    {
+        cout << "Invalid move" << endl;
+    }
+
+    int dir_team = (commands[4] == "RIGHT")  ? 1 : -1;
+    for (auto &&i : team->get_players()) i->set_posX(i->get_posX()+dir_team*4);
+}
+
+pair<int,int> CGame::direction() 
+{
+    string dir = commands[1];
+    if (dir == "LEFT") return {0,-1};
+    else if (dir == "DOWN-LEFT") return {1,-1};
+    else if (dir == "DOWN") return {1,0};
+    else if (dir == "DOWN-RIGHT") return {1,1};
+    else if (dir == "RIGHT") return {0,1};
+    else if (dir == "UP-RIGHT") return {-1,1};
+    else if (dir == "UP") return {-1,0};
+    else if (dir == "UP-LEFT") return {-1,-1};
 }
 
 void CGame::play()
@@ -23,12 +80,18 @@ void CGame::play()
     {
         // 1. Take commands of user
         take_commands();
-        // 2. Actions
+        
+        // 2. Do actions
         actions();
+
         // 3. Print field
         print();
+        
         // 4. Verify goal
         if (verify_goal()) break;
+
+        // 5. Change current team
+        current_team = (current_team == "BLUE") ? "RED" : "BLUE";
     }
     
 }
@@ -59,7 +122,7 @@ void CGame::print()
     }
 
     // 2. Put Ball in matrix
-    matrix[posXBall][posYBall] = 'X';
+    matrix[posYBall][posXBall] = 'X';
 
     // 3. Print field
     for (int i = 0; i < 123; i++) cout << "-";
@@ -81,7 +144,10 @@ void CGame::print()
 
 bool CGame::verify_goal()
 {
-    return 0;
+    if ((posXBall == 0 || posXBall == 120) & (posYBall < 38 & posYBall > 12))
+    {
+        return true;
+    } return false;
 }
 
 
