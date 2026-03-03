@@ -27,11 +27,11 @@ void CGame::actions()
     int number_spaces = stoi(commands[3]);
     pair<int,int> dir = direction();
 
-    if (((posPlayerY+2 <= posYBall)||(posPlayerY-2 <= posYBall))&(posPlayerX+2 <= posXBall)||(posPlayerX-2 <= posXBall)) flag_use_ball = true;
+    if (((posPlayerY+2 <= posYBall)||(posPlayerY-2 <= posYBall))&&(posPlayerX+2 <= posXBall)||(posPlayerX-2 <= posXBall)) flag_use_ball = true;
 
     if (commands[2] == "BALL")
     {
-        if (number_spaces < 1 || number_spaces > 40)
+        if (number_spaces >= 1 || number_spaces <= 40)
         {
             if (flag_use_ball)
             {
@@ -42,10 +42,10 @@ void CGame::actions()
         
     } else if (commands[2] == "PLAYER")
     {
-        if (number_spaces < 1 || number_spaces > 10)
+        if (number_spaces >= 1 || number_spaces <= 10)
         {
             int finalPosPlayerY = posPlayerY+dir.first*number_spaces;
-            int finalPosPlayerX = posPlayerY+dir.second*number_spaces;
+            int finalPosPlayerX = posPlayerX+dir.second*number_spaces;
             if (dir.first != 0) player_to_check->set_posY(finalPosPlayerY);
             if (dir.second != 0) player_to_check->set_posX(finalPosPlayerX);
             posXBall = finalPosPlayerX+1;
@@ -114,7 +114,10 @@ void CGame::take_commands()
 void CGame::print()
 {
     char** matrix = soccerField->get_matrix();
-    // 1. Put Teams in matrix
+    // 1. Clear matrix about previous plays
+
+
+    // 2. Put Teams in matrix
     for (auto &&player : redTeam->get_players())
     {
         matrix[player->get_posY()][player->get_posX()] = player->get_letter(); 
@@ -125,10 +128,10 @@ void CGame::print()
         matrix[player->get_posY()][player->get_posX()] = player->get_letter(); 
     }
 
-    // 2. Put Ball in matrix
+    // 3. Put Ball in matrix
     matrix[posYBall][posXBall] = 'X';
 
-    // 3. Print field
+    // 4. Print field
     for (int i = 0; i < 123; i++) cout << "-";
     cout << endl;
     
@@ -172,7 +175,7 @@ void CGame::check_boundaries()
 
 bool CGame::verify_goal()
 {
-    if ((posXBall == 0 || posXBall == 120) & (posYBall < 38 & posYBall > 12))
+    if ((posXBall == 0 || posXBall == 120) && (posYBall < 38 & posYBall > 12))
     {
         return true;
     } return false;
