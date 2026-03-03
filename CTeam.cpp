@@ -10,7 +10,7 @@ CTeam::CTeam()
 CTeam::CTeam(string n):name(n), coach(CPerson())
 {
     vector<pair<int,int>> positions = {{25,0},{4,14},{12,14},{38,14},{46,14},
-                                    {9,29},{25,29},{41,29},{4,53},{25,53},{46,53}};
+                                    {9,29},{25,29},{41,29},{4,53},{25,58},{46,53}};
     if (n == "red")
     {
         char letter = 'A';
