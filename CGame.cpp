@@ -5,8 +5,8 @@ CGame::CGame()
     this->soccerField = new CSoccerField();
     this->redTeam = new CTeam("red");
     this->blueTeam = new CTeam("blue");
-    this->posXBall = 25;
-    this->posYBall = 60;
+    this->posXBall = 60;
+    this->posYBall = 25;
     this->current_team = "BLUE";
     this->commands = vector<string>(5);
 }
@@ -133,6 +133,13 @@ void CGame::print()
 {
     char **matrix = soccerField->get_matrix();
     // 1. Clear matrix about previous plays
+    for (int i = 0; i < soccerField->get_rows(); i++)
+    {
+        for (int j = 0; j < soccerField->get_cols(); j++)
+        {
+            if (matrix[i][j] != '#') matrix[i][j] = ' ';
+        }
+    }
 
     // 2. Put Teams in matrix
     for (auto &&player : redTeam->get_players())
