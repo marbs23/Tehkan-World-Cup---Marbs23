@@ -5,8 +5,8 @@ CGame::CGame()
     this->soccerField = new CSoccerField();
     this->redTeam = new CTeam("red");
     this->blueTeam = new CTeam("blue");
-    this->posXBall = 60;
-    this->posYBall = 25;
+    this->posXBall = 58;
+    this->posYBall = 24;
     this->current_team = "BLUE";
     this->commands = vector<string>(5);
 }
