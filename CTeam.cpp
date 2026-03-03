@@ -10,13 +10,14 @@ CTeam::CTeam()
 CTeam::CTeam(string n):name(n), coach(CPerson())
 {
     vector<pair<int,int>> positions = {{25,0},{4,14},{12,14},{38,14},{46,14},
-                                    {9,29},{25,29},{41,29},{4,53},{25,58},{46,53}};
+                                    {9,29},{25,29},{41,29},{4,53},{25,48},{46,53}};
     if (n == "blue")
     {
         char letter = 'A';
         for (int i = 0; i < 11; i++)
         {
-            CPlayer* newPlayer = new CPlayer(letter,positions[i].second,positions[i].first);
+            CPlayer* newPlayer = new CPlayer(letter,positions[i].second,positions[i].first);            
+            if (positions[i].second == 48) newPlayer->set_posX(57);         
             players.push_back(newPlayer);
             letter++;
         }
