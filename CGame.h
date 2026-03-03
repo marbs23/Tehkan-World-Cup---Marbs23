@@ -17,6 +17,7 @@ public:
     void print();
     bool verify_goal();
     void take_commands();
+    void check_boundaries();
     pair<int,int> direction();
     ~CGame();
 };

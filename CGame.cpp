@@ -84,6 +84,9 @@ void CGame::play()
         // 2. Do actions
         actions();
 
+        // 3. Check boundaries
+        check_boundaries();
+
         // 3. Print field
         print();
         
@@ -140,6 +143,25 @@ void CGame::print()
     
     for (int i = 0; i < 123; i++) cout << "-";
     cout << endl;
+}
+
+void CGame::check_boundaries()
+{
+    for (auto &&player : redTeam->get_players())
+    {
+        if (player->get_posX()<0) player->set_posX(0);
+        else if (player->get_posX()>120) player->set_posX(120);
+        if (player->get_posY()<0) player->set_posY(0);
+        else if (player->get_posY()>50) player->set_posY(50);
+    }
+
+    for (auto &&player : blueTeam->get_players())
+    {
+        if (player->get_posX()<0) player->set_posX(0);
+        else if (player->get_posX()>120) player->set_posX(120);
+        if (player->get_posY()<0) player->set_posY(0);
+        else if (player->get_posY()>50) player->set_posY(50);
+    }
 }
 
 bool CGame::verify_goal()
