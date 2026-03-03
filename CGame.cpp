@@ -71,6 +71,7 @@ pair<int,int> CGame::direction()
     else if (dir == "UP-RIGHT") return {-1,1};
     else if (dir == "UP") return {-1,0};
     else if (dir == "UP-LEFT") return {-1,-1};
+    else return {0,0};
 }
 
 void CGame::play()
