@@ -45,4 +45,5 @@ void CTeam::set_coach(CPerson _coach) {coach = _coach;}
 
 CTeam::~CTeam()
 {
+    for (auto p : players) delete p;
 }
