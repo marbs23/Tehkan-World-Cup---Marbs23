@@ -18,7 +18,7 @@ void CGame::actions()
 
     CTeam *team = (current_team == "BLUE") ? blueTeam : redTeam;
     CPlayer *player_to_check;
-    for (auto &&i : team->get_players())
+    for (auto i : team->get_players())
     {
         if (i->get_letter() == commands[0][0])
             player_to_check = i;
@@ -65,8 +65,8 @@ void CGame::actions()
     }
 
     int dir_team = (commands[4] == "RIGHT") ? 1 : -1;
-    for (auto &&i : team->get_players())
-        i->set_posX(i->get_posX() + dir_team * 4);
+    for (auto i : team->get_players())
+        if (i->get_letter()!= 'A' || i->get_letter()!= 'L') i->set_posX(i->get_posX() + dir_team * 4);
 }
 
 pair<int, int> CGame::direction()
@@ -142,12 +142,12 @@ void CGame::print()
     }
 
     // 2. Put Teams in matrix
-    for (auto &&player : redTeam->get_players())
+    for (auto player : redTeam->get_players())
     {
         matrix[player->get_posY()][player->get_posX()] = player->get_letter();
     }
 
-    for (auto &&player : blueTeam->get_players())
+    for (auto player : blueTeam->get_players())
     {
         matrix[player->get_posY()][player->get_posX()] = player->get_letter();
     }
@@ -186,7 +186,7 @@ void CGame::check_boundaries()
     else if (posYBall > 50)
         posYBall = 50;
 
-    for (auto &&player : redTeam->get_players())
+    for (auto player : redTeam->get_players())
     {
         if (player->get_posX() < 0)
             player->set_posX(0);
@@ -198,7 +198,7 @@ void CGame::check_boundaries()
             player->set_posY(50);
     }
 
-    for (auto &&player : blueTeam->get_players())
+    for (auto player : blueTeam->get_players())
     {
         if (player->get_posX() < 0)
             player->set_posX(0);

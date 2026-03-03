@@ -11,7 +11,7 @@ CTeam::CTeam(string n):name(n), coach(CPerson())
 {
     vector<pair<int,int>> positions = {{25,0},{4,14},{12,14},{38,14},{46,14},
                                     {9,29},{25,29},{41,29},{4,53},{25,58},{46,53}};
-    if (n == "red")
+    if (n == "blue")
     {
         char letter = 'A';
         for (int i = 0; i < 11; i++)
@@ -21,7 +21,7 @@ CTeam::CTeam(string n):name(n), coach(CPerson())
             letter++;
         }
         
-    } else if (n == "blue")
+    } else if (n == "red")
     {
         char letter = 'L';
         for (int i = 0; i < 11; i++)
